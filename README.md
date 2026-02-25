@@ -42,6 +42,16 @@ Example: `/media/arlo/videos`
 
 Controls the directory structure and filenames within `media_directory`. The default organizes files by date and camera name:
 
-`$Y/$m/$d/$NN/${F}T${t}_${N}_${SN}`
+`${Y}/${m}/${F}T${t}_${N}_${SN}`
 
 See [pyaarlo's saving media documentation](https://github.com/twrecked/pyaarlo#saving-media) for the full list of available format variables.
+
+## Periodic restart
+
+The arlo-downloader process runs as a daemon, continuously monitoring for new recordings via pyaarlo's event system. It should not need restarting under normal operation. If you find it stops picking up new recordings, you can create an HA automation to restart it on a schedule:
+
+1. Go to Settings > Automations > Create Automation
+2. **Trigger:** Time pattern (e.g., daily — set hours to `0`)
+3. **Action:** Call service `hassio.addon_restart` with addon `local_arlo-downloader`
+
+You can find your exact addon ID in the URL bar when viewing the add-on in HA.
