@@ -2,7 +2,9 @@
 
 ARLO_USERNAME="$(bashio::config 'arlo_username')"
 ARLO_PASSWORD="$(bashio::config 'arlo_password')"
-MEDIA_FOLDER="$(bashio::config 'media_folder')"
+MEDIA_DIRECTORY="$(bashio::config 'media_directory')"
+FILENAME_FORMAT="$(bashio::config 'filename_format')"
+SAVE_MEDIA_TO="${MEDIA_DIRECTORY%/}/${FILENAME_FORMAT}"
 TFA_TYPE="$(bashio::config 'tfa_type')"
 TFA_SOURCE="$(bashio::config 'tfa_source')"
 TFA_RETRIES="$(bashio::config 'tfa_retries')"
@@ -15,7 +17,7 @@ if bashio::config.true 'debug'; then
 fi
 
 ARGS=(
-  --save-media-to "$MEDIA_FOLDER"
+  --save-media-to "$SAVE_MEDIA_TO"
   --tfa-type "$TFA_TYPE"
   --tfa-source "$TFA_SOURCE"
   --tfa-retries "$TFA_RETRIES"
@@ -33,7 +35,7 @@ if bashio::config.has_value 'tfa_password'; then
 fi
 
 bashio::log.info "Starting Arlo Downloader..."
-bashio::log.info "Media folder: ${MEDIA_FOLDER}"
+bashio::log.info "Save path: ${SAVE_MEDIA_TO}"
 bashio::log.info "TFA type: ${TFA_TYPE}"
 
 exec python3 /arlo-downloader/arlo-downloader.py "${ARGS[@]}"

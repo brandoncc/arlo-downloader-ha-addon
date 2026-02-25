@@ -1,0 +1,45 @@
+configuration:
+  arlo_username:
+    name: Arlo username
+    description: Your Arlo account email address.
+  arlo_password:
+    name: Arlo password
+    description: Your Arlo account password.
+  media_directory:
+    name: Media directory
+    description: >-
+      Base path for recordings, e.g. /media/arlo/videos.
+      Must be under /media/ using a Media-type network storage mount.
+  filename_format:
+    name: Filename format
+    description: >-
+      Directory structure and naming pattern within the media directory.
+      Uses pyaarlo format variables like $Y (year), $m (month), $d (day),
+      $NN (camera name lowercase), $F (date), $t (time), $N (camera name),
+      $SN (serial number). See https://github.com/twrecked/pyaarlo#saving-media
+  tfa_type:
+    name: 2FA type
+    description: Two-factor authentication method configured on your Arlo account.
+  tfa_source:
+    name: 2FA source
+    description: >-
+      How to receive the 2FA code. Use "push" for Arlo push notifications
+      or "imap" to read codes from an email inbox.
+  tfa_retries:
+    name: 2FA retries
+    description: Number of times to check for a 2FA code before giving up.
+  tfa_delay:
+    name: 2FA delay
+    description: Seconds to wait between 2FA retry attempts.
+  tfa_host:
+    name: IMAP host
+    description: "IMAP server for email-based 2FA, e.g. imap.gmail.com:993. Only needed when 2FA source is imap."
+  tfa_username:
+    name: IMAP username
+    description: Email username for IMAP-based 2FA. Only needed when 2FA source is imap.
+  tfa_password:
+    name: IMAP password
+    description: Email password for IMAP-based 2FA. Only needed when 2FA source is imap.
+  debug:
+    name: Debug logging
+    description: Enable verbose debug logging from arlo-downloader.

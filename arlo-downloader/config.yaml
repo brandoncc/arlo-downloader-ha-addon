@@ -18,7 +18,8 @@ map:
 options:
   arlo_username: ""
   arlo_password: ""
-  media_folder: ""
+  media_directory: ""
+  filename_format: "$Y/$m/$d/$NN/${F}T${t}_${N}_${SN}"
   tfa_type: PUSH
   tfa_source: push
   tfa_retries: 10
@@ -28,7 +29,8 @@ options:
 schema:
   arlo_username: str
   arlo_password: password
-  media_folder: str
+  media_directory: str
+  filename_format: str
   tfa_type: "list(PUSH|EMAIL)"
   tfa_source: "list(push|imap)"
   tfa_retries: "int(1,30)"
