@@ -19,7 +19,7 @@ options:
   arlo_username: ""
   arlo_password: ""
   media_directory: ""
-  filename_format: "$Y/$m/$d/$NN/${F}T${t}_${N}_${SN}"
+  filename_format: "${Y}/${m}/${F}T${t}_${N}_${SN}"
   tfa_type: PUSH
   tfa_source: push
   tfa_retries: 10
